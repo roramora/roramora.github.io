@@ -5,6 +5,11 @@
     padding: 0;
     margin: 0;
   }
+
+  body {
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+  }
   
   /* Styles for the body element */
   main {
@@ -36,6 +41,7 @@
   
   /* Banner text styles */
   .banner-text {
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 14px;
     font-weight:bold;
     margin: 0px;
