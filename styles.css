@@ -57,13 +57,13 @@
   
   @media only screen and (max-width: 500px) and (min-width: 301px) {
     p {
-      font-size: calc(22px + 1vw);
+      font-size: calc(20px + 1vw);
     }
   }
   
   @media only screen and (max-width: 300px) {
     p {
-      font-size: calc(20px + 1vw);
+      font-size: calc(18px + 1vw);
     }
   }
   
