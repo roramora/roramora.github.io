@@ -41,8 +41,8 @@ p {
 
 /* Banner text styles */
 .banner-text {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  font-weight:bold;
   margin: 0px;
   padding: 5px;
 }
@@ -54,14 +54,20 @@ p {
   }
 }
 
-@media only screen and (max-width: 500px) and (min-width: 301px) {
+@media only screen and (max-width: 500px) and (min-width: 376px) {
   p {
     font-size: calc(22px + 1vw);
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 375px) and (min-width: 276px) {
   p {
-    font-size: calc(20px + 1vw);
+    font-size: calc(18px + 1vw);
+  }
+}
+
+@media only screen and (max-width: 275px) {
+  p {
+    font-size: calc(12px + 1vw);
   }
 }
