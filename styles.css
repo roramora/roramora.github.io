@@ -1,0 +1,63 @@
+/* Reset default styles for all elements */
+* {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Styles for the body element */
+  main {
+    height: 100vh;
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #D1CBC1;
+    color: #2D383A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Common styles for paragraphs */
+  p {
+    margin: 25px;
+  }
+  
+  .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    z-index: 999; /* Ensure it's above other content */
+  }
+  
+  /* Banner text styles */
+  .banner-text {
+    font-size: 14px;
+    font-weight:bold;
+    margin: 0px;
+    padding: 5px;
+  }
+  
+  /* Responsive font size settings */
+  @media only screen and (min-width: 501px) {
+    p {
+      font-size: calc(24px + 1vw);
+    }
+  }
+  
+  @media only screen and (max-width: 500px) and (min-width: 301px) {
+    p {
+      font-size: calc(20px + 1vw);
+    }
+  }
+  
+  @media only screen and (max-width: 300px) {
+    p {
+      font-size: calc(18px + 1vw);
+    }
+  }
+  

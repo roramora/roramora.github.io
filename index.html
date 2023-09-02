@@ -4,114 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JEENEETards</title>
-<style>
-/* Reset default styles for all elements */
-* {
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  padding: 0;
-  margin: 0;
-}
-
-/* Styles for the body element */
-main {
-  height: 100vh;
-  font-family: 'IBM Plex Mono', monospace;
-  background-color: #D1CBC1;
-  color: #2D383A;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Common styles for paragraphs */
-p {
-  margin: 25px;
-}
-
-.banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  z-index: 999; /* Ensure it's above other content */
-}
-
-/* Banner text styles */
-.banner-text {
-  font-size: 14px;
-  font-weight:bold;
-  margin: 0px;
-  padding: 5px;
-}
-
-/* Responsive font size settings */
-@media only screen and (min-width: 501px) {
-  p {
-    font-size: calc(24px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 500px) and (min-width: 301px) {
-  p {
-    font-size: calc(20px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 300px) {
-  p {
-    font-size: calc(18px + 1vw);
-  }
-}
-/* Reset default styles for all elements */
-* {
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  padding: 0;
-  margin: 0;
-}
-
-/* Styles for the body element */
-body {
-  height: 100vh;
-  font-family: 'IBM Plex Mono', monospace;
-  background-color: #D1CBC1;
-  color: #2D383A;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Common styles for paragraphs */
-p {
-  margin: 25px;
-}
-
-/* Responsive font size settings */
-@media only screen and (min-width: 501px) {
-  p {
-    font-size: calc(24px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 500px) and (min-width: 301px) {
-  p {
-    font-size: calc(22px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 300px) {
-  p {
-    font-size: calc(20px + 1vw);
-  }
-}
-</style>
-</head>
+<link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
+<link rel="stylesheet" href="styles.css">
+<script type="text/javascript" src="script.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
 <script>
@@ -121,49 +16,17 @@ p {
 
   gtag('config', 'G-P0K4PEBRM5');
 </script>
+</head>
 <body>
-  <main>
-    <div class="container">
-      <p class="countdown">JEE MAIN 1: <span id="countdown1" class="a1"></span>
-      </p>
-      <p class="countdown">JEE MAIN 2: <span id="countdown2" class="a1"></span>
-      </p>
-      <p class="countdown">JEE ADV: <span id="countdown3" class="a1"></span>
-      </p>
-      <p class="countdown">NEET: <span id="countdown4" class="a1"></span>
-      </p>
-    </div>
-  </main>
-<div class="banner">
-  <p class="banner-text">AI companion - Vikram coming soon</p>
+<div class="container">
+  <p class="link">JeeNeetards: <a href="https://www.reddit.com/r/JEENEETards/" target="_blank">r/JEENEETards</a></p>
+    <p class="countdown">JEE Main 1: <span id="countdown1" class="a1"></span></p>
+    <p class="countdown">JEE Main 2: <span id="countdown2" class="a1"></span></p>
+    <p class="countdown">JEE Advanced: <span id="countdown3" class="a1"></span></p>
+    <div style="height: 5px;"></div>
+    <p class="countdown">NEET: <span id="countdown4" class="a1"></span></p>
+  <p class="link">Btechtards: <a href="https://www.reddit.com/r/Btechtards/" target="_blank">r/Btechtards</a></p>
+    <p class="countdown">IIT-D Question Paper: <a href="https://bsw.iitd.ac.in/question_papers.php" target="_blank">BSW Link</a></p>
 </div>
-<script>
-  function startCountdown(targetDate, elementId) {
-    const countdown = document.getElementById(elementId);
-  
-    if (!countdown) {
-      console.error(`Element with ID '${elementId}' not found.`);
-      return;
-    }
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const targetTime = new Date(targetDate).getTime();
-      const distance = targetTime - now;
-      const hours = Math.floor(distance / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      // const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-      countdown.innerHTML = `${hours}h ${minutes}m`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 5000);
-    }
-    
-    // Update countdowns
-  	startCountdown('2024-01-23T23:59:59', 'countdown1');
-  	startCountdown('2024-04-05T23:59:59', 'countdown2');
-  	startCountdown('2024-06-03T23:59:59', 'countdown3');
-  	startCountdown('2024-05-06T23:59:59', 'countdown4');
-</script>
 </body>
 </html>
