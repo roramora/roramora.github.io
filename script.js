@@ -9,14 +9,15 @@ function startCountdown(targetDate, elementId) {
       const now = new Date().getTime();
       const targetTime = new Date(targetDate).getTime();
       const distance = targetTime - now;
-      const hours = Math.floor(distance / (1000 * 60 * 60));
+      const days = Math.floor((distance/(1000*60*60))/24);
+      const hours = Math.floor((distance/(1000*60*60))%24);
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      // const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
-      countdown.innerHTML = `${hours}h ${minutes}m`;
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
     updateCountdown();
-    setInterval(updateCountdown, 5000);
+    setInterval(updateCountdown, 1000);
     }
     
     // Update countdowns
