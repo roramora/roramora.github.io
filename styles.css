@@ -47,6 +47,11 @@ p {
   padding: 5px;
 }
 
+#linkone {
+  color: #87CEEB;
+  font-weight: bold;
+}
+
 /* Responsive font size settings */
 @media only screen and (min-width: 501px) {
   p {
