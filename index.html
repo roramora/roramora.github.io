@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEENEETards</title>
-<link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
-<link rel="stylesheet" href="styles.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-P0K4PEBRM5');
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEENEETards</title>
+    <link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-P0K4PEBRM5');
+    </script>
 </head>
 <body>
-  <div class="container">
-    <p class="countdown">JEE MAIN 1: <span id="countdown1" class="a1"></span></p>
-    <p class="countdown">JEE MAIN 2: <span id="countdown2" class="a1"></span></p>
-    <p class="countdown">JEE ADV: <span id="countdown3" class="a1"></span></p>
-    <p class="countdown">NEET: <span id="countdown4" class="a1"></span></p>
+  <div class="currenttime">
+    <h1>Padhle Bsdk</h1>
+    <h1>Current Time and Date</h1>
+    <p id="datetime"></p>
   </div>
-<div class="banner">
-<p class="banner-text">Exam Schedule: <a href="https://docs.google.com/spreadsheets/d/1nUULMT7LHhTTFVHflrztbqLIOCAh3SMSwyO2OeQRp0o/edit?usp=sharing" target="_blank" id="linkone">Click Here</a></p></div>
-<script type="text/javascript" src="script.js"></script>
+    <h2 class="title">Upcoming Exams</h2>
+    <div class="container">
+      <div class="countdown-container">
+        <div class="countdown">
+          <div class="countdown-item">
+            <p>JEE MAIN 1: <span id="countdown1" class="countdown-timer"></span></p>
+          </div>
+          <div class="countdown-item">
+            <p>JEE MAIN 2: <span id="countdown2" class="countdown-timer"></span></p>
+          </div>
+          <div class="countdown-item">
+            <p>JEE ADV: <span id="countdown3" class="countdown-timer"></span></p>
+          </div>
+          <div class="countdown-item">
+            <p>NEET: <span id="countdown4" class="countdown-timer"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="motivation-container custom-scrollbar">
+        <div id="quote-container">
+          <ul>
+            <!-- Quotes will be added as list items here -->
+          </ul>
+        </div>
+        <!-- Add more motivational quotes as needed -->
+      </div>
+    </div>
+  <div class="banner">
+    <p class="banner-text">Exam Schedule: <a href="https://docs.google.com/spreadsheets/d/1nUULMT7LHhTTFVHflrztbqLIOCAh3SMSwyO2OeQRp0o/edit?usp=sharing" target="_blank" id="linkone">Click Here</a></p>
+  </div>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

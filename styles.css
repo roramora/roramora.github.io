@@ -1,98 +1,157 @@
 /* Reset default styles for all elements */
 * {
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  padding: 0;
-  margin: 0;
-}
-body {
-  overflow: hidden;
-  font-family: 'IBM Plex Mono', monospace;
-  height: 100vh;
-  background-color: #D1CBC1;
-  color: #2D383A;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  body {
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    height: 100vh;
+    background-color: #1e272e; /* Dark blue-gray background */
+    color: #ecf0f1; /* Light gray text color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .currenttime h1 {
+    padding-top: 50px;
+    text-align: center;
+  }
+
+  .currenttime p {
+    text-align: center;
+    padding-bottom: 50px; 
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Common styles for countdown items */
+  .countdown-item {
+    background-color: #3742fa; /* Blue background for countdown items */
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .countdown-item p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .countdown-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .countdown-timer {
+    font-size: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out; /* Add a color transition */
+  }
+  
+  .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ff793f; /* Orange background for the banner */
+    color: #fff;
+    text-align: center;
+    z-index: 999;
+    padding: 10px;
+  }
+  
+  /* Banner text styles */
+  .banner-text {
+    font-size: 16px;
+    margin: 0;
+    padding: 5px;
+  }
+  
+  #linkone {
+    color: #87CEEB; /* Light blue link color */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  #linkone:hover {
+    text-decoration: underline;
+  }
+  
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Center content horizontally */
+    padding: 20px;
+    text-align: center; /* Center text within the container */
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .countdown-container {
+    flex: 1;
+  }
+  .motivation-container {
+    flex: 2;
+  }
+  
+  .countdown-container {
+    text-align: left;
+    padding-right: 10px; /* Add some spacing between columns */
+    height: auto;
+  }
+  
+  .motivation-container {
+    text-align: left;
+    padding-left: 10px; /* Add some spacing between columns */
+    background-color: #2ecc71; /* Green background for motivation */
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    height: 215px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .motivation-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  
+  .motivation-text {
+    font-size 20px;
+    margin: 10px 0;
+    -height: 1.4
+  }
+
+#quote-container {
+    text-align justify
 }
 
-.container {
-  position: fixed;
-  top: calc(50% - 24px); 
-  transform: translateY(-50%);
-}
-
-/* Common styles for paragraphs */
-p {
-  margin: 25px;
-}
-
-.banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+#quote-container li {
+  word-: normal;
+  padding: 5px
+  overflow hidden;
+  font-size: 16px;
+  display: inline-block;
+  text-align: left;
   width: 100%;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  z-index: 999; /* Ensure it's above other content */
-}
-
-/* Banner text styles */
-.banner-text {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  margin: 0px;
-  padding: 5px;
-}
-
-#linkone {
-  color: #87CEEB;
-  font-weight: bold;
-}
-
-/* Responsive font size settings */
-@media only screen and (min-width: 501px) {
-  p {
-    font-size: calc(24px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 500px) and (min-width: 450px) {
-  p {
-    font-size: calc(22px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 450px) and (min-width: 400px) {
-  p {
-    font-size: calc(20px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 400px) and (min-width: 350px) {
-  p {
-    font-size: calc(18px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 350px) and (min-width: 315px) {
-  p {
-    font-size: calc(16px + 1vw);
-  }
-}
-
-
-@media only screen and (max-width: 315px) and (min-width: 280px) {
-  p {
-    font-size: calc(14px + 1vw);
-  }
-}
-
-
-@media only screen and (max-width: 280px) {
-  p {
-    font-size: calc(12px + 1vw);
-  }
+  margin: 0;
 }
