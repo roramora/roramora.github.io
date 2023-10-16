@@ -136,19 +136,19 @@
   
   
   .motivation-text {
-    font-size: 20px;
+    font-size 20px;
     margin: 10px 0;
-    line-height: 1.4;
+    -height: 1.4
   }
 
 #quote-container {
-    text-align: justify;
+    text-align justify
 }
 
 #quote-container li {
-  word-wrap: normal;
-  padding: 5px;
-  overflow: hidden;
+  word-: normal;
+  padding: 5px
+  overflow hidden;
   font-size: 16px;
   display: inline-block;
   text-align: left;
