@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JEENEETards</title>
 <meta name="description" content="Jeeneetards is a website for students preparing for JEE and NEET exams. It provides countdown timers for each exam, tips and tricks, and motivational quotes. Visit Jeeneetards today and ace your exams!">
-<link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
 <link rel="stylesheet" href="styles.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
@@ -17,14 +16,21 @@
 </script>
 </head>
 <body>
-  <div class="container">
-    <p class="countdown">JEE MAIN 1: <span id="countdown1" class="a1"></span></p>
-    <p class="countdown">JEE MAIN 2: <span id="countdown2" class="a1"></span></p>
-    <p class="countdown">JEE ADV: <span id="countdown3" class="a1"></span></p>
-    <p class="countdown">NEET: <span id="countdown4" class="a1"></span></p>
-  </div>
-<div class="banner">
-<p class="banner-text">Exam Schedule: <a href="https://docs.google.com/spreadsheets/d/1nUULMT7LHhTTFVHflrztbqLIOCAh3SMSwyO2OeQRp0o/edit?usp=sharing" target="_blank" id="linkone">Click Here</a></p></div>
-<script type="text/javascript" src="script.js"></script>
+  <div class="header">
+    <h1 id="title">jeeneetards</h1>
+    </header>
+    <div class="container">
+      <p class="countdown">JEE MAIN 1: <span id="countdown1" class="a1"></span></p>
+      <p class="countdown">JEE MAIN 2: <span id="countdown2" class="a1"></span></p>
+      <p class="countdown">JEE ADV: <span id="countdown3" class="a1"></span></p>
+      <p class="countdown">NEET: <span id="countdown4" class="a1"></span></p>
+    </div>
+    <div class="search-bar">
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Ask AI">
+        <button id="search-button">🔎</button>
+      </form>
+    </div>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

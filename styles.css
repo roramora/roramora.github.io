@@ -1,4 +1,3 @@
-/* Reset default styles for all elements */
 * {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -7,92 +6,98 @@
 }
 body {
   overflow: hidden;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: Arial, sans-serif;
   height: 100vh;
-  background-color: #D1CBC1;
-  color: #2D383A;
-  display: flex;
+  background-color: #d1cbc1;
+  color: #2d383a;
+  /*   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
-
 .container {
-  position: fixed;
-  top: calc(50% - 24px); 
-  transform: translateY(-50%);
-}
-
-/* Common styles for paragraphs */
-p {
-  margin: 25px;
-}
-
-.banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*   border: 1px solid black; */
   text-align: center;
-  z-index: 999; /* Ensure it's above other content */
+  word-spacing: 0.2em;
 }
 
-/* Banner text styles */
-.banner-text {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  margin: 0px;
+.countdown {
+  width: 80vw;
+  max-width: 600px;
+  /*   border: 1px solid black; */
+  text-align: left;
+  margin: 15px;
+}
+
+.header {
+  text-align: center;
+}
+
+#title {
+  font-size: min(max(18px, 2.5vw), 24px);
+  font-weight: 100;
+  /*   border: 1px solid black; */
+  margin: 20px;
+}
+
+/* .horizontal-line {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+} */
+
+.search-bar {
+  width: 80vw;
+  max-width: 600px;
+  /*   border: 1px solid black; */
+  height: 10vh;
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, 0%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#search-form {
+  display: flex;
+  align-items: center;
+  height: 8vh;
+  width: 100%;
+  /*   border: 1px solid black; */
+}
+
+#search-input {
+  box-sizing: border-box;
+  background-color: #e1e1e1;
+  height: 100%;
+  width: 85%;
+  border-radius: 10px;
+  font-size: min(max(14px, 2.5vw), 20px);
+  border: none;
   padding: 5px;
+  padding-left: 15px;
 }
 
-#linkone {
-  color: #87CEEB;
-  font-weight: bold;
-}
-
-/* Responsive font size settings */
-@media only screen and (min-width: 501px) {
-  p {
-    font-size: calc(24px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 500px) and (min-width: 450px) {
-  p {
-    font-size: calc(22px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 450px) and (min-width: 400px) {
-  p {
-    font-size: calc(20px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 400px) and (min-width: 350px) {
-  p {
-    font-size: calc(18px + 1vw);
-  }
-}
-
-@media only screen and (max-width: 350px) and (min-width: 315px) {
-  p {
-    font-size: calc(16px + 1vw);
-  }
-}
-
-
-@media only screen and (max-width: 315px) and (min-width: 280px) {
-  p {
-    font-size: calc(14px + 1vw);
-  }
-}
-
-
-@media only screen and (max-width: 280px) {
-  p {
-    font-size: calc(12px + 1vw);
-  }
+#search-button {
+  margin-left: 10px;
+  height: 100%;
+  width: 10%;
+  min-width: 30px;
+  border: none;
+  background-color: #2d383a;
+  color: #d1cbc1;
+  font-size: min(max(14px, 2.5vw), 20px);
+  /*   padding: 10px 20px; */
+  border-radius: 10px;
 }
