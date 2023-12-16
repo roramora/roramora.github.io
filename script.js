@@ -86,7 +86,7 @@ function startCountdown(targetDate, elementId) {
 // Update countdowns
 startCountdown("2024-01-23T23:59:59", "countdown1");
 startCountdown("2024-03-31T23:59:59", "countdown2");
-startCountdown("2024-06-03T23:59:59", "countdown3");
+startCountdown("2024-05-25T23:59:59", "countdown3");
 startCountdown("2024-05-04T23:59:59", "countdown4");
 
 // Add event listener for the resize event to reset styles and then update wrapping status and adjust font size on content resizing
