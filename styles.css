@@ -4,6 +4,7 @@
   padding: 0;
   margin: 0;
 }
+
 body {
   font-family: Arial, sans-serif;
   height: 100vh;
@@ -12,7 +13,9 @@ body {
   display:flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
+
 .container {
   display:flex;
   flex-direction: column;
