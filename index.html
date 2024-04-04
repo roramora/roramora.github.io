@@ -1,31 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEENEETards</title>
-<meta name="description" content="Jeeneetards is a website for students preparing for JEE and NEET exams. It provides countdown timers for each exam, tips and tricks, and motivational quotes. Visit Jeeneetards today and ace your exams!">
-<link rel="stylesheet" href="styles.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-P0K4PEBRM5');
-</script>
+  <title>JEENEETards</title>
+  <meta name="description" content="Boost your JEE and NEET preparation with our comprehensive study notes. Unlock higher scores by accessing high-quality content from top YouTube tutorials. Our notes complement your learning and provide the extra edge you need to excel.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    #header {
+      background-color: #f0f0f0;
+      padding: 15px;
+      text-align: center;
+    }
+    #header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    #card-container {
+      display: flex;
+      flex-wrap: wrap;
+      overflow-y: auto;
+      gap: 10px;
+      padding: 10px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      max-width: 250px;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+    .card h3 {
+      margin: 5px 0;
+    }
+    .card p {
+      margin: 2px 0;
+    }
+    .card button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    #pagination {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #pagination a {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 0 5px;
+      text-decoration: none;
+      color: #000;
+    }
+    #pagination a.active {
+      background-color: #f0f0f0;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-P0K4PEBRM5');
+	</script>
 </head>
 <body>
-  <div class="header">
-    <h1 id="title">jeeneetards</h1>
+  <div id="header">
+    <h1>JEENEETards</h1>
   </div>
-    <div class="container">
-      <p class="countdown">JEE MAIN 1: <span id="countdown1" class="a1"></span></p>
-      <p class="countdown">JEE MAIN 2: <span id="countdown2" class="a1"></span></p>
-      <p class="countdown">JEE ADV: <span id="countdown3" class="a1"></span></p>
-      <p class="countdown">NEET: <span id="countdown4" class="a1"></span></p>
-    </div>
-    <iframe src="https://www.youtube-nocookie.com/embed/OvcI0PdeJI4?si=iDGDfAL-k835UXns" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <script type="text/javascript" src="script.js"></script>
+  <div id="card-container"></div>
+  <div style="display: flex; flex-grow: 1; white-space: nowrap;"></div>
+  <div id="pagination"></div>
+
+  <script>
+    const cardsPerPage = 20;
+    let cardCount = 0;
+
+    function createCard(imageUrl, title, downloadUrl) {
+      if (cardCount >= cardsPerPage) {
+        console.log("Maximum card limit reached.");
+        return;
+      }
+
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${imageUrl}" alt="${title}">
+        <h3>${title}</h3>
+        <p class="promo"><s>₹9</s> Free (Promo)</p>
+        <button onclick="downloadFile('${downloadUrl}')">Purchase Notes</button>
+      `;
+      document.getElementById('card-container').appendChild(card);
+      cardCount++;
+    }
+
+    function downloadFile(fileUrl) {
+      window.open(fileUrl, '_blank');
+    }
+
+    function createPagination(currentPage, totalPages) {
+      const paginationContainer = document.getElementById('pagination');
+      paginationContainer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const link = document.createElement('a');
+        link.href = `jeeneetards.com/page=${i}`;
+        link.innerText = i;
+        if (i === currentPage) {
+          link.classList.add('active');
+        }
+        paginationContainer.appendChild(link);
+      }
+    }
+
+    function highlightPageNumber(pageNumber) {
+      const links = document.querySelectorAll('#pagination a');
+      links.forEach((link, index) => {
+        if (index + 1 === pageNumber) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    //createCard("https://img.youtube.com/vi/zHQMYp-tvTI/mqdefault.jpg", "Lecture Note 1", "download1.pdf");
+    createPagination(1, 1);
+  </script>
 </body>
 </html>
