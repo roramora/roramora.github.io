@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>JEENEETards</title>
-  <meta name="description" content="Boost your JEE and NEET preparation with our comprehensive study notes. Unlock higher scores by accessing high-quality content from top YouTube tutorials. Our notes complement your learning and provide the extra edge you need to excel.">
+  <meta name="description" content="JEENEETards provides highest quality academic notes for JEE and NEET preparation">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
   <style>
     html, body {
       font-family: Arial, sans-serif;
@@ -13,7 +15,7 @@
     body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      height: 100vh;
     }
     #header {
       background-color: #f0f0f0;
@@ -118,7 +120,11 @@
 
       for (let i = 1; i <= totalPages; i++) {
         const link = document.createElement('a');
-        link.href = `jeeneetards.com/page=${i}`;
+        if (i === 1) {
+          link.href = "www.jeeneetards.com";
+        } else {
+          link.href = `www.jeeneetards.com/page=${i}`;
+        }
         link.innerText = i;
         if (i === currentPage) {
           link.classList.add('active');
