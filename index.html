@@ -68,6 +68,12 @@
       cursor: pointer;
     }
 
+    #disclaimer {
+      text-align: center;
+      margin: 5px;
+    }
+
+
     #pagination {
       text-align: center;
       margin-bottom: 20px;
@@ -101,7 +107,8 @@
   </div>
   <div id="card-container"></div>
   <div style="display: flex; flex-grow: 1; white-space: nowrap;"></div>
-  <div id="pagination"></div>
+<!--<div id="pagination"></div>--> 
+  <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact main.roramora@gmail.com for concerns.</div>
 
   <script>
     const cardsPerPage = 20;
@@ -118,8 +125,8 @@
       card.innerHTML = `
         <img src="${imageUrl}" alt="${title}">
         <h3 style="text-align: left;">${title}</h3>
-        <p class="promo"><s>₹9</s> Free (Promo)</p>
-        <button onclick="downloadFile('${downloadUrl}')">Download Notes</button>
+<!--        <p class="promo"><s>₹9</s> Free (Promo)</p> -->
+        <button onclick="downloadFile('${downloadUrl}')">View Notes</button>
       `;
       document.getElementById('card-container').appendChild(card);
       cardCount++;
@@ -172,7 +179,7 @@
     createCard("https://img.youtube.com/vi/BGog1v94t2I/mqdefault.jpg", "Mistakes IIT JEE Aspirants Make & 10 Tips to Avoid Them!", "https://drive.usercontent.google.com/download?id=1dexNY_m7lrjARbaZjKW1rGGGH9iDS5tM&export=download");
     createCard("https://img.youtube.com/vi/Dn9N-pHIW1Q/mqdefault.jpg", "How to Crack JEE Advanced 2024 in 45 days? Strategy & IIT motivation", "https://drive.usercontent.google.com/download?id=1BJALvDGgJ1UZbl8pqpAEDRwm0WgzXIHP&export=download");
 
-    createPagination(1, 1);
+    // createPagination(1, 1);
   </script>
 </body>
 
