@@ -22,14 +22,16 @@
     }
 
     #header {
-      background-color: #f0f0f0;
-      padding: 15px;
-      text-align: center;
+      display: flex;
+      /* background-color: #f0f0f0; */
+      padding: 10px;
+      text-align: left;
     }
 
     #header h1 {
       margin: 0;
       font-size: 24px;
+      /* font-weight: normal; */
     }
 
     #card-container {
@@ -73,11 +75,6 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    #disclaimer {
-      text-align: center;
-      margin: 5px;
-    }
-
 
     #pagination {
       text-align: center;
@@ -97,6 +94,7 @@
     }
 
     #disclaimer {
+      text-align: center;
       background-color: #972423;
       color: white;
       margin: 0px;
@@ -116,7 +114,12 @@
 
 <body>
   <div id="header">
-    <h1>JEENEETards</h1>
+    <a href="https://www.jeeneetards.com" >
+      <img src="https://i.ibb.co/QmQ4cXW/website-Logo.png" alt="JEENEETards Logo" style="height: 24px; margin-right: 10px;" />
+    </a>
+    <a href="https://www.jeeneetards.com" style="text-decoration: none; color: #000;">
+      <h1>JEENEETARDS</h1>
+    </a>
   </div>
   <div id="card-container"></div>
   <div style="display: flex; flex-grow: 1; white-space: nowrap;"></div>
