@@ -6,15 +6,18 @@
   <meta name="description"
     content="JEENEETards provides highest quality notes, practice questions, explanations and summaries for JEE (Joint Entrance Examination) and NEET (National Eligibility cum Entrance Test) students.">
     <meta name="keywords" content="JEENEETards, JEE, NEET, academic notes, study resources, practice questions, explanations, summaries, competitive exams, academic success">
-    <link rel="canonical" href="https://wwwjeeneetards.com/" />
+    <link rel="canonical" href="https://www.jeeneetards.com/" />
+    
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="JEENEETARDS" />
     <meta property="og:description" content="JEENEETards provides highest quality notes, practice questions, explanations and summaries for JEE (Joint Entrance Examination) and NEET (National Eligibility cum Entrance Test) students." />
     <meta property="og:url" content="https://www.jeeneetards.com/" />
     <meta property="og:site_name" content="JEENEETARDS" />
-    <meta property="article:modified_time" content="2024-05-3T10:36:59+00:00" />
+    
+    <meta property="article:modified_time" content="2024-05-03T10:36:59+00:00" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.png" alt="JEENEETards favicon">
   <style>
@@ -144,6 +147,7 @@
 </head>
 
 <body>
+  <header>
   <div id="header">
     <a href="https://www.jeeneetards.com">
       <img src="https://i.ibb.co/QmQ4cXW/website-Logo.png" alt="JEENEETards Logo"
@@ -153,7 +157,6 @@
       <h1>JEENEETARDS</h1>
     </a>
   </div>
-  <div id="scroll-content" style="overflow-y: auto;">
     <div id="menu">
       <a href="https://www.jeeneetards.com">Home</a>
       <select id="options" style="border: none; margin: none;">
@@ -161,16 +164,19 @@
         <!-- <option value="option2">JEE</option> -->
         <!-- <option value="option3">NEET</option> -->
       </select>
-      <a href="./pages/about.html">About</a>
+      <a href="./pages/about.html" title="JEENEETARDS About">About</a>
       <a href="mailto:main.roramora@gmail.com" title="JEENEETARDS Contact">Contact</a>
     </div>
-    <div id="card-container"></div>
+  </header>
+    <div id="scroll-content" style="overflow-y: auto;">
+    <main id="card-container"></main>
   </div>
   <!-- <div style="display: flex; flex-grow: 1; white-space: nowrap;"></div> -->
   <!--<div id="pagination"></div>-->
+  <footer>
   <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact <a
       href="mailto:main.roramora@gmail.com">main.roramora@gmail.com</a> for concerns.</div>
-
+</footer>
   <script>
     const cardsPerPage = 20;
     let cardCount = 0;
