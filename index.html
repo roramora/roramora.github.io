@@ -199,38 +199,56 @@
     const cardsPerPage = 20;
     let cardCount = 0;
 
+    const emojis = ["📚", "🔬", "📝", "🎯", "🕒", "📊", "🔍", "💡", "👨‍🎓", "🏆"];
+    const emojiContainers = [];
+
+    function getRandomEmoji() {
+        return emojis[Math.floor(Math.random() * emojis.length)];
+    }
+
+    function updateEmojis() {
+        emojiContainers.forEach(container => {
+            container.innerText = getRandomEmoji();
+        });
+    }
+
+    setInterval(updateEmojis, 500); // update every 0.5 seconds
+
     function createCard(imageUrl, title, downloadUrl, sourceUrl = '#') {
-      if (cardCount >= cardsPerPage) {
-        console.log("Maximum card limit reached.");
-        return;
-      }
+        if (cardCount >= cardsPerPage) {
+            console.log("Maximum card limit reached.");
+            return;
+        }
 
-      const card = document.createElement('div');
-      card.classList.add('card');
-      card.innerHTML = `
-        <img src="${imageUrl}" alt="${title}" onclick="openSource('${sourceUrl}')">
-        <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
-        <button onclick="downloadFile('${downloadUrl}')">View Notes</button>
-        <div class="glare-overlay"></div>
-      `;
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <img src="${imageUrl}" alt="${title}" onclick="openSource('${sourceUrl}')">
+            <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
+            <button onclick="downloadFile('${downloadUrl}')">View Notes <span class="emoji-container"></span></button>
+            <div class="glare-overlay"></div>
+        `;
 
-      const glareOverlay = card.querySelector('.glare-overlay');
-      const delay = Math.random() * 5;
-      glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
+        const emojiContainer = card.querySelector('.emoji-container');
+        emojiContainers.push(emojiContainer);
 
-      document.getElementById('card-container').appendChild(card);
-      cardCount++;
+        const glareOverlay = card.querySelector('.glare-overlay');
+        const delay = Math.random() * 5;
+        glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
+
+        document.getElementById('card-container').appendChild(card);
+        cardCount++;
     }
 
     function downloadFile(fileUrl) {
-      window.open(fileUrl, '_blank');
+        window.open(fileUrl, '_blank');
     }
 
     function openSource(sourceUrl) {
-      if (sourceUrl !== '#') {
-        window.open(sourceUrl, '_blank');
-      }
-      // do nothing if sourceUrl is '#'
+        if (sourceUrl !== '#') {
+            window.open(sourceUrl, '_blank');
+        }
+        // do nothing if sourceUrl is '#'
     }
 
 
