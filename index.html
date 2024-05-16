@@ -25,6 +25,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.png" alt="JEENEETards favicon">
   <style>
+    * {
+      color: #FFFFFF;
+    }
+
     html,
     body {
       font-family: Arial, sans-serif;
@@ -33,11 +37,12 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
+      background-color: #191a1a;
     }
+
 
     #header {
       display: flex;
-      /* background-color: #f0f0f0; */
       padding: 10px;
       justify-content: center;
     }
@@ -45,7 +50,6 @@
     #header h1 {
       margin: 0;
       font-size: 24px;
-      /* font-weight: normal; */
     }
 
     #menu {
@@ -60,9 +64,14 @@
     }
 
     #menu a {
-      color: black;
       text-decoration: none;
       font-size: 0.8em;
+    }
+
+    #menu select {
+      border: none;
+      margin: none;
+      background-color: rgba(0, 0, 0, 0);
     }
 
     #card-container {
@@ -75,12 +84,13 @@
     .card {
       display: flex;
       flex-direction: column;
-      border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
       max-width: 250px;
       position: relative;
       overflow: hidden;
+      background-color: #202222;
+      border-radius: 3%;
     }
 
     .card .glare-overlay {
@@ -125,30 +135,11 @@
     .card button {
       margin-top: auto;
       background-color: #3b5998;
-      color: #fff;
       border: none;
       padding: 5px 10px;
       cursor: pointer;
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-
-    #pagination {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    #pagination a {
-      display: inline-block;
-      padding: 5px 10px;
-      margin: 0 5px;
-      text-decoration: none;
-      color: #000;
-    }
-
-    #pagination a.active {
-      background-color: #f0f0f0;
     }
 
     #disclaimer {
@@ -188,7 +179,7 @@
     </div>
     <div id="menu">
       <a href="https://www.jeeneetards.com">Home</a>
-      <select id="options" style="border: none; margin: none;">
+      <select id="options">
         <option value="option1" selected>JEE+NEET</option>
         <!-- <option value="option2">JEE</option> -->
         <!-- <option value="option3">NEET</option> -->
@@ -200,8 +191,6 @@
   <div id="scroll-content" style="overflow-y: auto;">
     <main id="card-container"></main>
   </div>
-  <!-- <div style="display: flex; flex-grow: 1; white-space: nowrap;"></div> -->
-  <!--<div id="pagination"></div>-->
   <footer>
     <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact <a
         href="mailto:main.roramora@gmail.com">main.roramora@gmail.com</a> for concerns.</div>
@@ -221,15 +210,14 @@
       card.innerHTML = `
         <img src="${imageUrl}" alt="${title}" onclick="openSource('${sourceUrl}')">
         <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
-<!--        <p class="promo"><s>₹9</s> Free (Promo)</p> -->
         <button onclick="downloadFile('${downloadUrl}')">View Notes</button>
         <div class="glare-overlay"></div>
       `;
 
       const glareOverlay = card.querySelector('.glare-overlay');
-  const delay = Math.random() * 5;
-  glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
-      
+      const delay = Math.random() * 5;
+      glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
+
       document.getElementById('card-container').appendChild(card);
       cardCount++;
     }
@@ -243,36 +231,6 @@
         window.open(sourceUrl, '_blank');
       }
       // do nothing if sourceUrl is '#'
-    }
-
-    function createPagination(currentPage, totalPages) {
-      const paginationContainer = document.getElementById('pagination');
-      paginationContainer.innerHTML = '';
-
-      for (let i = 1; i <= totalPages; i++) {
-        const link = document.createElement('a');
-        if (i === 1) {
-          link.href = "https://www.jeeneetards.com";
-        } else {
-          link.href = `https://www.jeeneetards.com/page=${i}`;
-        }
-        link.innerText = i;
-        if (i === currentPage) {
-          link.classList.add('active');
-        }
-        paginationContainer.appendChild(link);
-      }
-    }
-
-    function highlightPageNumber(pageNumber) {
-      const links = document.querySelectorAll('#pagination a');
-      links.forEach((link, index) => {
-        if (index + 1 === pageNumber) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
     }
 
 
@@ -294,8 +252,6 @@
     createCard("https://img.youtube.com/vi/ftpMoqZ7i2I/mqdefault.jpg", "FIGHT With All Your Distraction For IIT JEE Exam", "https://drive.usercontent.google.com/download?id=1f_eWxgNfDq-_TYBYELGegfJR9SGriYnP&export=download");
     createCard("https://img.youtube.com/vi/BGog1v94t2I/mqdefault.jpg", "Mistakes IIT JEE Aspirants Make & 10 Tips to Avoid Them!", "https://drive.usercontent.google.com/download?id=1dexNY_m7lrjARbaZjKW1rGGGH9iDS5tM&export=download");
     createCard("https://img.youtube.com/vi/Dn9N-pHIW1Q/mqdefault.jpg", "How to Crack JEE Advanced 2024 in 45 days? Strategy & IIT motivation", "https://drive.usercontent.google.com/download?id=1BJALvDGgJ1UZbl8pqpAEDRwm0WgzXIHP&export=download");
-
-    // createPagination(1, 1);
   </script>
 </body>
 
