@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JEENEETARDS</title>
   <meta name="description"
     content="JEENEETards provides highest quality notes, practice questions, explanations and summaries for JEE (Joint Entrance Examination) and NEET (National Eligibility cum Entrance Test) students.">
-    <meta name="keywords" content="JEENEETards, JEE, NEET, academic notes, study resources, practice questions, explanations, summaries, competitive exams, academic success">
-    <link rel="canonical" href="https://www.jeeneetards.com/" />
-    
-    <link rel="sitemap" type="application/xml" href="https://www.jeeneetards.com/sitemap.xml" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="keywords"
+    content="JEENEETards, JEE, NEET, academic notes, study resources, practice questions, explanations, summaries, competitive exams, academic success">
+  <link rel="canonical" href="https://www.jeeneetards.com/" />
 
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="JEENEETARDS" />
-    <meta property="og:description" content="JEENEETards provides highest quality notes, practice questions, explanations and summaries for JEE (Joint Entrance Examination) and NEET (National Eligibility cum Entrance Test) students." />
-    <meta property="og:url" content="https://www.jeeneetards.com/" />
-    <meta property="og:site_name" content="JEENEETARDS" />
-    
-    <meta property="article:modified_time" content="2024-05-03T10:36:59+00:00" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="sitemap" type="application/xml" href="https://www.jeeneetards.com/sitemap.xml" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="JEENEETARDS" />
+  <meta property="og:description"
+    content="JEENEETards provides highest quality notes, practice questions, explanations and summaries for JEE (Joint Entrance Examination) and NEET (National Eligibility cum Entrance Test) students." />
+  <meta property="og:url" content="https://www.jeeneetards.com/" />
+  <meta property="og:site_name" content="JEENEETARDS" />
+
+  <meta property="article:modified_time" content="2024-05-03T10:36:59+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.png" alt="JEENEETards favicon">
   <style>
     html,
@@ -149,15 +152,15 @@
 
 <body>
   <header>
-  <div id="header">
-    <a href="https://www.jeeneetards.com">
-      <img src="https://i.ibb.co/QmQ4cXW/website-Logo.png" alt="JEENEETards Logo"
-        style="height: 24px; margin-right: 10px;" />
-    </a>
-    <a href="https://www.jeeneetards.com" style="text-decoration: none; color: #000;">
-      <h1>JEENEETARDS</h1>
-    </a>
-  </div>
+    <div id="header">
+      <a href="https://www.jeeneetards.com">
+        <img src="https://i.ibb.co/QmQ4cXW/website-Logo.png" alt="JEENEETards Logo"
+          style="height: 24px; margin-right: 10px;" />
+      </a>
+      <a href="https://www.jeeneetards.com" style="text-decoration: none; color: #000;">
+        <h1>JEENEETARDS</h1>
+      </a>
+    </div>
     <div id="menu">
       <a href="https://www.jeeneetards.com">Home</a>
       <select id="options" style="border: none; margin: none;">
@@ -169,20 +172,20 @@
       <a href="mailto:main.roramora@gmail.com" title="Contact JEENEETARDS">Contact</a>
     </div>
   </header>
-    <div id="scroll-content" style="overflow-y: auto;">
+  <div id="scroll-content" style="overflow-y: auto;">
     <main id="card-container"></main>
   </div>
   <!-- <div style="display: flex; flex-grow: 1; white-space: nowrap;"></div> -->
   <!--<div id="pagination"></div>-->
   <footer>
-  <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact <a
-      href="mailto:main.roramora@gmail.com">main.roramora@gmail.com</a> for concerns.</div>
-</footer>
+    <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact <a
+        href="mailto:main.roramora@gmail.com">main.roramora@gmail.com</a> for concerns.</div>
+  </footer>
   <script>
     const cardsPerPage = 20;
     let cardCount = 0;
 
-    function createCard(imageUrl, title, downloadUrl) {
+    function createCard(imageUrl, title, downloadUrl, sourceUrl = '#') {
       if (cardCount >= cardsPerPage) {
         console.log("Maximum card limit reached.");
         return;
@@ -191,8 +194,8 @@
       const card = document.createElement('div');
       card.classList.add('card');
       card.innerHTML = `
-        <img src="${imageUrl}" alt="${title}">
-        <h3 style="text-align: left;">${title}</h3>
+        <img src="${imageUrl}" alt="${title}" onclick="openSource('${sourceUrl}')">
+        <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
 <!--        <p class="promo"><s>₹9</s> Free (Promo)</p> -->
         <button onclick="downloadFile('${downloadUrl}')">View Notes</button>
       `;
@@ -202,6 +205,13 @@
 
     function downloadFile(fileUrl) {
       window.open(fileUrl, '_blank');
+    }
+
+    function openSource(sourceUrl) {
+      if (sourceUrl !== '#') {
+        window.open(sourceUrl, '_blank');
+      }
+      // do nothing if sourceUrl is '#'
     }
 
     function createPagination(currentPage, totalPages) {
