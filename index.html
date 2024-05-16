@@ -82,6 +82,34 @@
       padding: 10px;
       text-align: center;
       max-width: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card .glare-overlay {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+
+    @keyframes move-glare {
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(200%);
+        opacity: 1;
+      }
     }
 
     .card img {
@@ -198,7 +226,13 @@
         <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
 <!--        <p class="promo"><s>₹9</s> Free (Promo)</p> -->
         <button onclick="downloadFile('${downloadUrl}')">View Notes</button>
+        <div class="glare-overlay"></div>
       `;
+
+      const glareOverlay = card.querySelector('.glare-overlay');
+  const delay = Math.random() * 5;
+  glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
+      
       document.getElementById('card-container').appendChild(card);
       cardCount++;
     }
