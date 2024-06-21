@@ -3,261 +3,464 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JEENEETARDS</title>
-  <meta name="description" content="JEENEETards: JEE & NEET study resources, notes & practice questions.">
-
-  <link rel="sitemap" type="application/xml" href="https://www.jeeneetards.com/sitemap.xml" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="description" content="JEENEETards: Advanced Kanban Board for Planning">
   <link rel="icon" type="image/x-icon" href="assets/favicon.png" alt="JEENEETards favicon">
-  
   <style>
     * {
-      color: #FFFFFF;
-    }
-
-    html,
-    body {
-      font-family: Arial, sans-serif;
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      background-color: #191a1a;
+      align-items: center;
     }
 
-
-    #header {
+    .button-container {
       display: flex;
-      padding: 10px;
       justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
     }
 
-    #header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    #menu {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin: 10px 0;
-    }
-
-    #menu * {
-      margin-right: min(10vw, 20px);
-    }
-
-    #menu a {
-      text-decoration: none;
-      font-size: 0.8em;
-    }
-
-    #menu select {
-      border: none;
-      margin: none;
-      background-color: rgba(0, 0, 0, 0);
-    }
-
-    #card-container {
+    .kanban-board {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      padding: 10px;
+      gap: 20px;
+      align-items: flex-start;
+      max-width: 1200px;
+      width: 100%;
+      justify-content: center;
     }
 
-    .card {
+    .column {
+      flex: 1 1 300px;
+      max-width: 350px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      padding: 15px;
+      min-height: 300px;
+      height: auto;
       display: flex;
       flex-direction: column;
+    }
+
+    .column h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .task-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+    }
+
+    .task {
+      background-color: white;
+      border-radius: 5px;
       padding: 10px;
-      text-align: center;
-      max-width: 250px;
-      position: relative;
-      overflow: hidden;
-      background-color: #202222;
-      border-radius: 3%;
-    }
-
-    .card .glare-overlay {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255), rgba(255, 255, 255, 0));
-      opacity: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-
-    @keyframes move-glare {
-      0% {
-        transform: translateX(-100%);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translateX(200%);
-        opacity: 1;
-      }
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .card h3 {
-      margin: 5px 0;
-    }
-
-    .card p {
-      margin: 2px 0;
-    }
-
-    .card button {
-      margin-top: auto;
-      background-color: #3b5998;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      border-radius: 4px;
+      margin-bottom: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: move;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
-    #disclaimer {
-      text-align: center;
-      background-color: #d3413f;
-      color: white;
-      margin-top: auto;
-      padding: 5px;
+    .task-content {
+      flex-grow: 1;
+      padding-right: 25px;
+    }
+
+    .task h3 {
+      margin-bottom: 5px;
+      font-size: 1.1em;
+      word-break: break-word;
+    }
+
+    .task p {
+      font-size: 0.8em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .task .severity {
+      display: inline-block;
+      padding: 2px 5px;
+      border-radius: 3px;
       font-size: 0.8em;
     }
 
-    #disclaimer a {
+    .severity.low {
+      background-color: #81c784;
+      color: #1b5e20;
+    }
+
+    .severity.medium {
+      background-color: #fff176;
+      color: #f57f17;
+    }
+
+    .severity.high {
+      background-color: #e57373;
+      color: #b71c1c;
+    }
+
+    .task.dragging {
+      opacity: 0.5;
+    }
+
+    .column.drag-over {
+      background-color: #bdbdbd;
+    }
+
+    #addTaskBtn,
+    #clearTasksBtn {
+      padding: 10px 20px;
+      background-color: #2196F3;
       color: white;
-      text-decoration: underline;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    #clearTasksBtn {
+      background-color: #f44336;
+    }
+
+    #addTaskBtn:hover,
+    #clearTasksBtn:hover {
+      opacity: 0.9;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input,
+    form select {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    form button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .date-input-container {
+      position: relative;
+    }
+
+    .date-input-container input {
+      width: 100%;
+      padding: 10px;
+      padding-right: 30px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .date-input-container .calendar-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .kanban-board {
+        flex-direction: column;
+      }
+
+      .column {
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        height: auto;
+      }
+
+      .task-container {
+        max-height: none;
+        overflow-y: visible;
+      }
     }
   </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-P0K4PEBRM5');
-  </script>
 </head>
 
 <body>
-  <header>
-    <div id="header">
-      <a href="https://www.jeeneetards.com">
-        <img src="https://i.ibb.co/QmQ4cXW/website-Logo.png" alt="JEENEETards Logo"
-          style="height: 24px; margin-right: 10px;" />
-      </a>
-      <a href="https://www.jeeneetards.com" style="text-decoration: none; color: #000;">
-        <h1>JEENEETARDS</h1>
-      </a>
-    </div>
-    <div id="menu">
-      <a href="https://www.jeeneetards.com">Home</a>
-      <select id="options">
-        <option value="option1" selected>JEE+NEET</option>
-        <!-- <option value="option2">JEE</option> -->
-        <!-- <option value="option3">NEET</option> -->
-      </select>
-      <a href="https://jeeneetards.com/pages/about.html" title="About JEENEETARDS">About</a>
-      <a href="mailto:main.roramora@gmail.com" title="Contact JEENEETARDS">Contact</a>
-    </div>
-  </header>
-  <div id="scroll-content" style="overflow-y: auto;">
-    <main id="card-container"></main>
+  <div class="button-container">
+    <button id="addTaskBtn">Add Task</button>
+    <button id="clearTasksBtn">Clear Tasks</button>
   </div>
-  <footer>
-    <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact <a
-        href="mailto:main.roramora@gmail.com">main.roramora@gmail.com</a> for concerns.</div>
-  </footer>
+  <div class="kanban-board">
+    <div class="column" id="todo">
+      <h2>To Do</h2>
+      <div class="task-container"></div>
+    </div>
+    <div class="column" id="inProgress">
+      <h2>In Progress</h2>
+      <div class="task-container"></div>
+    </div>
+    <div class="column" id="done">
+      <h2>Done</h2>
+      <div class="task-container"></div>
+    </div>
+  </div>
+
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="taskForm">
+        <input type="text" id="taskTitle" placeholder="Task Title" required>
+        <select id="taskSeverity" required>
+          <option value="">Select Severity</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <div class="date-input-container">
+          <input type="text" id="taskDueDate" placeholder="Select due date" required readonly>
+          <span class="calendar-icon">📅</span>
+        </div>
+        <button type="submit">Add Task</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
   <script>
-    const cardsPerPage = 20;
-    let cardCount = 0;
+    document.addEventListener('DOMContentLoaded', () => {
+      const addTaskBtn = document.getElementById('addTaskBtn');
+      const clearTasksBtn = document.getElementById('clearTasksBtn');
+      const modal = document.getElementById('taskModal');
+      const closeBtn = document.getElementsByClassName('close')[0];
+      const taskForm = document.getElementById('taskForm');
+      const columns = document.querySelectorAll('.column');
+      let draggedTask = null;
+      let tasks = [];
+      flatpickr("#taskDueDate", {
+        dateFormat: "Y-m-d",
+        allowInput: true
+      });
 
-    const emojis = ["📚", "🔬", "📝", "🎯", "🕒", "📊", "🔍", "💡", "👨‍🎓", "🏆"];
-    const emojiContainers = [];
+      function createTask(id, title, severity, dueDate, column) {
+        const task = document.createElement('div');
+        task.className = 'task';
+        task.draggable = true;
+        task.dataset.id = id;
+        task.innerHTML = `
+                    <div class="task-content">
+                        <h3>${title}</h3>
+                        <p>Due: ${dueDate}</p>
+                        <span class="severity ${severity}">${severity}</span>
+                    </div>
+                    <button class="delete-btn">&times;</button>
+                `;
+        task.querySelector('.delete-btn').addEventListener('click', () => deleteTask(task));
+        document.getElementById(column).querySelector('.task-container').appendChild(task);
+        addDragListeners(task);
+        return task;
+      }
 
-    function getRandomEmoji() {
-        return emojis[Math.floor(Math.random() * emojis.length)];
-    }
+      function deleteTask(task) {
+        task.remove();
+        tasks = tasks.filter(t => t.id !== task.dataset.id);
+        saveToStorage();
+      }
 
-    function updateEmojis() {
-        emojiContainers.forEach(container => {
-            container.innerText = getRandomEmoji();
-        });
-    }
+      function saveToStorage() {
+        localStorage.setItem('kanbanTasks', JSON.stringify(tasks));
+      }
 
-    setInterval(updateEmojis, 500); // update every 0.5 seconds
-
-    function createCard(imageUrl, title, downloadUrl, sourceUrl = '#') {
-        if (cardCount >= cardsPerPage) {
-            console.log("Maximum card limit reached.");
-            return;
+      function loadFromStorage() {
+        const storedTasks = localStorage.getItem('kanbanTasks');
+        if (storedTasks) {
+          tasks = JSON.parse(storedTasks);
+          tasks.forEach(task => {
+            createTask(task.id, task.title, task.severity, task.dueDate, task.column);
+          });
         }
+      }
 
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-            <img src="${imageUrl}" alt="${title}" onclick="openSource('${sourceUrl}')">
-            <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
-            <button onclick="downloadFile('${downloadUrl}')">View Notes <span class="emoji-container"></span></button>
-            <div class="glare-overlay"></div>
-        `;
-
-        const emojiContainer = card.querySelector('.emoji-container');
-        emojiContainers.push(emojiContainer);
-
-        const glareOverlay = card.querySelector('.glare-overlay');
-        const delay = Math.random() * 5;
-        glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
-
-        document.getElementById('card-container').appendChild(card);
-        cardCount++;
-    }
-
-    function downloadFile(fileUrl) {
-        window.open(fileUrl, '_blank');
-    }
-
-    function openSource(sourceUrl) {
-        if (sourceUrl !== '#') {
-            window.open(sourceUrl, '_blank');
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+      const debouncedSave = debounce(saveToStorage, 300);
+      addTaskBtn.onclick = () => {
+        modal.style.display = "block";
+      }
+      clearTasksBtn.onclick = () => {
+        if (confirm('Are you sure you want to clear all tasks? This action cannot be undone.')) {
+          tasks = [];
+          document.querySelectorAll('.task-container').forEach(container => {
+            container.innerHTML = '';
+          });
+          saveToStorage();
         }
-        // do nothing if sourceUrl is '#'
-    }
+      }
+      closeBtn.onclick = () => {
+        modal.style.display = "none";
+      }
+      window.onclick = (event) => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      taskForm.onsubmit = (e) => {
+        e.preventDefault();
+        const title = document.getElementById('taskTitle').value;
+        const severity = document.getElementById('taskSeverity').value;
+        const dueDate = document.getElementById('taskDueDate').value;
+        // Validation: Ensure dueDate is selected
+        if (!dueDate) {
+          alert("Please select a due date.");
+          return; // Stop form submission
+        }
+        const id = Date.now().toString();
+        const newTask = {
+          id,
+          title,
+          severity,
+          dueDate,
+          column: 'todo'
+        };
+        tasks.push(newTask);
+        createTask(id, title, severity, dueDate, 'todo');
+        debouncedSave();
+        modal.style.display = "none";
+        taskForm.reset();
+      }
 
+      function addDragListeners(task) {
+        task.addEventListener('dragstart', dragStart);
+        task.addEventListener('dragend', dragEnd);
+      }
 
-    createCard("https://img.youtube.com/vi/Wf0_XUsAId8/mqdefault.jpg", "NEET 2024 Last Mistake - Zaroor Dekhein", "https://drive.usercontent.google.com/u/0/uc?id=1RauiN8gN5erdE6lDBOYruzTZ4LfMOK0O&export=download");
-    createCard("https://img.youtube.com/vi/_wZbTaQdyUI/mqdefault.jpg", "Sureshot Chapters to Clear JEE Advanced 2024", "https://drive.usercontent.google.com/u/0/uc?id=1P5vfyrA0tYgDHuZvJ9Mx5EX7ofQmV1eS&export=download");
-    createCard("https://img.youtube.com/vi/Agu1eAIExxI/mqdefault.jpg", "5 Must Do Things to Clear JEE 2026 | Full Roadmap", "https://drive.usercontent.google.com/u/0/uc?id=149A_pGWNggYIYMug7_q_ZmE0nAazp-Cr&export=download");
-    createCard("https://img.youtube.com/vi/1KjhAU21lpU/mqdefault.jpg", "What 95% NEET Aspirants don’t understand!", "https://drive.usercontent.google.com/u/0/uc?id=12hn84idyKmT15LyTx5J0uB216b55oLqz&export=download");
-    createCard("https://img.youtube.com/vi/94iPiprx-wY/mqdefault.jpg", "JEE Main Marks Vs Percentile 2024 | Rank vs Percentile April Attempt", "https://drive.usercontent.google.com/download?id=10n08B4PKtWdvLom6AX0yZnGzhT4JzggU&export=download");
-    createCard("https://img.youtube.com/vi/JRbi-Yg8kyI/mqdefault.jpg", "Final Countdown to NEET UG - Mindset & Approach for Last Few Days", "https://drive.usercontent.google.com/download?id=1b-qlgEKufiFWnNiiCM4ya5fwWtUOLK4A&export=download");
-    createCard("https://img.youtube.com/vi/OsMSm5Ov4a0/mqdefault.jpg", "NEET 2024 | Last 20 Days Timetable Tips For Aspirants", "https://drive.usercontent.google.com/download?id=1rhvuwd0Ew5nhjB87nQTCZyg9AUvd-LLt&export=download");
-    createCard("https://img.youtube.com/vi/gpLrAnfZdZ4/mqdefault.jpg", "DAY-WISE Plan To COMPLETE Biology 5 TIMES Before NEET 2024", "https://drive.usercontent.google.com/download?id=1V6gPqXuFHBJHF2qK5XlRqEveyZRg_Qjx&export=download");
-    createCard("https://img.youtube.com/vi/pTzoCuZzGpM/mqdefault.jpg", "Last 20 Days Strategy | Score 650+ | NEET 2024 | Seep Pahuja", "https://drive.usercontent.google.com/download?id=11zP3zKcgwkEX03QDLhYNeS2UzVwz7I-K&export=download");
-    createCard("https://img.youtube.com/vi/Fd-3q19oXoo/mqdefault.jpg", "NEET 2024 Last 20 Days Ultimate Strategy.", "https://drive.usercontent.google.com/download?id=1h6ZIGjbbtwtUjF4d25sjc9jY8zwk58_R&export=download");
-    createCard("https://img.youtube.com/vi/nhfblNTpP3U/mqdefault.jpg", "अगर आज ये नहीं करा तो जीवन भर पछताना पड़ेगा | Best IIT-JEE Motivation", "https://drive.usercontent.google.com/download?id=1Sad07W5auVpigAe0u5tZMZD9x9urmNCl&export=download");
-    createCard("https://img.youtube.com/vi/ELobuy7pcQo/mqdefault.jpg", "How to Crack Mathematics in 45 days ? JEE advanced 2024", "https://drive.usercontent.google.com/download?id=1kY65zQ80Z4z9kkA0W924hTH5BraV4ZO2&export=download");
-    createCard("https://img.youtube.com/vi/OKEGrOW4838/mqdefault.jpg", "The Most In-Depth Roadmap for JEE Advanced Physics!", "https://drive.usercontent.google.com/download?id=1TwzZ2rCdt6U69LPBAguGHHmA_24gzjLY&export=download");
-    createCard("https://img.youtube.com/vi/lTx8eoj6UI0/mqdefault.jpg", "RANKERS' Exam Attempting Strategy - JEE Mains 2024", "https://drive.usercontent.google.com/download?id=1Qxf4x0Vn4MV8Ftah_7tkl-PY0PTINLuJ&export=download");
-    createCard("https://img.youtube.com/vi/oHqP6cx07GA/mqdefault.jpg", "5 steps to Advanced Level in 45 days : JEE 2024 strategy | IIT Motivation", "https://drive.usercontent.google.com/download?id=1RGROixsVXN0Czp_vz70635XEifRUArXA&export=download");
-    createCard("https://img.youtube.com/vi/ftpMoqZ7i2I/mqdefault.jpg", "FIGHT With All Your Distraction For IIT JEE Exam", "https://drive.usercontent.google.com/download?id=1f_eWxgNfDq-_TYBYELGegfJR9SGriYnP&export=download");
-    createCard("https://img.youtube.com/vi/BGog1v94t2I/mqdefault.jpg", "Mistakes IIT JEE Aspirants Make & 10 Tips to Avoid Them!", "https://drive.usercontent.google.com/download?id=1dexNY_m7lrjARbaZjKW1rGGGH9iDS5tM&export=download");
-    createCard("https://img.youtube.com/vi/Dn9N-pHIW1Q/mqdefault.jpg", "How to Crack JEE Advanced 2024 in 45 days? Strategy & IIT motivation", "https://drive.usercontent.google.com/download?id=1BJALvDGgJ1UZbl8pqpAEDRwm0WgzXIHP&export=download");
+      function dragStart(e) {
+        draggedTask = e.target;
+        e.dataTransfer.setData('text/plain', e.target.dataset.id);
+        setTimeout(() => e.target.classList.add('dragging'), 0);
+      }
+
+      function dragEnd(e) {
+        e.target.classList.remove('dragging');
+        draggedTask = null;
+        columns.forEach(column => column.classList.remove('drag-over'));
+      }
+      columns.forEach(column => {
+        column.addEventListener('dragover', dragOver);
+        column.addEventListener('dragenter', dragEnter);
+        column.addEventListener('dragleave', dragLeave);
+        column.addEventListener('drop', drop);
+      });
+
+      function dragOver(e) {
+        e.preventDefault();
+      }
+
+      function dragEnter(e) {
+        e.preventDefault();
+        e.target.closest('.column').classList.add('drag-over');
+      }
+
+      function dragLeave(e) {
+        e.target.closest('.column').classList.remove('drag-over');
+      }
+
+      function drop(e) {
+        e.preventDefault();
+        const column = e.target.closest('.column');
+        column.classList.remove('drag-over');
+        if (column && draggedTask) {
+          column.querySelector('.task-container').appendChild(draggedTask);
+          const taskId = draggedTask.dataset.id;
+          const taskIndex = tasks.findIndex(t => t.id === taskId);
+          if (taskIndex !== -1) {
+            tasks[taskIndex].column = column.id;
+            debouncedSave();
+          }
+        }
+      }
+      loadFromStorage();
+    });
   </script>
 </body>
 

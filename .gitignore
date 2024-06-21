@@ -1,5 +1,1 @@
-rm -r *
-git add .
-COMMIT_MESSAGE=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
-git commit -m "$COMMIT_MESSAGE"
-git push origin main
+git add . && git commit -m "$(tr -dc a-z0-9 < /dev/urandom | head -c 8)" && git push origin main

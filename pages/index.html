@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JEENEETARDS</title>
+  <meta name="description" content="JEENEETards: JEE & NEET study resources, notes & practice questions.">
+
+  <link rel="sitemap" type="application/xml" href="https://www.jeeneetards.com/sitemap.xml" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png" alt="JEENEETards favicon">
+  
+  <style>
+    * {
+      color: #FFFFFF;
+    }
+
+    html,
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #191a1a;
+    }
+
+
+    #header {
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+    }
+
+    #header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    #menu * {
+      margin-right: min(10vw, 20px);
+    }
+
+    #menu a {
+      text-decoration: none;
+      font-size: 0.8em;
+    }
+
+    #menu select {
+      border: none;
+      margin: none;
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    #card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      text-align: center;
+      max-width: 250px;
+      position: relative;
+      overflow: hidden;
+      background-color: #202222;
+      border-radius: 3%;
+    }
+
+    .card .glare-overlay {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255), rgba(255, 255, 255, 0));
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+
+    @keyframes move-glare {
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(200%);
+        opacity: 1;
+      }
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .card h3 {
+      margin: 5px 0;
+    }
+
+    .card p {
+      margin: 2px 0;
+    }
+
+    .card button {
+      margin-top: auto;
+      background-color: #3b5998;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #disclaimer {
+      text-align: center;
+      background-color: #d3413f;
+      color: white;
+      margin-top: auto;
+      padding: 5px;
+      font-size: 0.8em;
+    }
+
+    #disclaimer a {
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-P0K4PEBRM5');
+  </script>
+</head>
+
+<body>
+  <header>
+    <div id="header">
+      <a href="https://www.jeeneetards.com">
+        <img src="https://i.ibb.co/QmQ4cXW/website-Logo.png" alt="JEENEETards Logo"
+          style="height: 24px; margin-right: 10px;" />
+      </a>
+      <a href="https://www.jeeneetards.com" style="text-decoration: none; color: #000;">
+        <h1>JEENEETARDS</h1>
+      </a>
+    </div>
+    <div id="menu">
+      <a href="https://www.jeeneetards.com">Home</a>
+      <select id="options">
+        <option value="option1" selected>JEE+NEET</option>
+        <!-- <option value="option2">JEE</option> -->
+        <!-- <option value="option3">NEET</option> -->
+      </select>
+      <a href="https://jeeneetards.com/pages/about.html" title="About JEENEETARDS">About</a>
+      <a href="mailto:main.roramora@gmail.com" title="Contact JEENEETARDS">Contact</a>
+    </div>
+  </header>
+  <div id="scroll-content" style="overflow-y: auto;">
+    <main id="card-container"></main>
+  </div>
+  <footer>
+    <div id="disclaimer">Images are for representation only; copyright belongs to respective owners. Contact <a
+        href="mailto:main.roramora@gmail.com">main.roramora@gmail.com</a> for concerns.</div>
+  </footer>
+  <script>
+    const cardsPerPage = 20;
+    let cardCount = 0;
+
+    const emojis = ["📚", "🔬", "📝", "🎯", "🕒", "📊", "🔍", "💡", "👨‍🎓", "🏆"];
+    const emojiContainers = [];
+
+    function getRandomEmoji() {
+        return emojis[Math.floor(Math.random() * emojis.length)];
+    }
+
+    function updateEmojis() {
+        emojiContainers.forEach(container => {
+            container.innerText = getRandomEmoji();
+        });
+    }
+
+    setInterval(updateEmojis, 500); // update every 0.5 seconds
+
+    function createCard(imageUrl, title, downloadUrl, sourceUrl = '#') {
+        if (cardCount >= cardsPerPage) {
+            console.log("Maximum card limit reached.");
+            return;
+        }
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <img src="${imageUrl}" alt="${title}" onclick="openSource('${sourceUrl}')">
+            <h3 style="text-align: left;" onclick="openSource('${sourceUrl}')">${title}</h3>
+            <button onclick="downloadFile('${downloadUrl}')">View Notes <span class="emoji-container"></span></button>
+            <div class="glare-overlay"></div>
+        `;
+
+        const emojiContainer = card.querySelector('.emoji-container');
+        emojiContainers.push(emojiContainer);
+
+        const glareOverlay = card.querySelector('.glare-overlay');
+        const delay = Math.random() * 5;
+        glareOverlay.style.animation = `move-glare 2s infinite ${delay}s`;
+
+        document.getElementById('card-container').appendChild(card);
+        cardCount++;
+    }
+
+    function downloadFile(fileUrl) {
+        window.open(fileUrl, '_blank');
+    }
+
+    function openSource(sourceUrl) {
+        if (sourceUrl !== '#') {
+            window.open(sourceUrl, '_blank');
+        }
+        // do nothing if sourceUrl is '#'
+    }
+
+
+    createCard("https://img.youtube.com/vi/Wf0_XUsAId8/mqdefault.jpg", "NEET 2024 Last Mistake - Zaroor Dekhein", "https://drive.usercontent.google.com/u/0/uc?id=1RauiN8gN5erdE6lDBOYruzTZ4LfMOK0O&export=download");
+    createCard("https://img.youtube.com/vi/_wZbTaQdyUI/mqdefault.jpg", "Sureshot Chapters to Clear JEE Advanced 2024", "https://drive.usercontent.google.com/u/0/uc?id=1P5vfyrA0tYgDHuZvJ9Mx5EX7ofQmV1eS&export=download");
+    createCard("https://img.youtube.com/vi/Agu1eAIExxI/mqdefault.jpg", "5 Must Do Things to Clear JEE 2026 | Full Roadmap", "https://drive.usercontent.google.com/u/0/uc?id=149A_pGWNggYIYMug7_q_ZmE0nAazp-Cr&export=download");
+    createCard("https://img.youtube.com/vi/1KjhAU21lpU/mqdefault.jpg", "What 95% NEET Aspirants don’t understand!", "https://drive.usercontent.google.com/u/0/uc?id=12hn84idyKmT15LyTx5J0uB216b55oLqz&export=download");
+    createCard("https://img.youtube.com/vi/94iPiprx-wY/mqdefault.jpg", "JEE Main Marks Vs Percentile 2024 | Rank vs Percentile April Attempt", "https://drive.usercontent.google.com/download?id=10n08B4PKtWdvLom6AX0yZnGzhT4JzggU&export=download");
+    createCard("https://img.youtube.com/vi/JRbi-Yg8kyI/mqdefault.jpg", "Final Countdown to NEET UG - Mindset & Approach for Last Few Days", "https://drive.usercontent.google.com/download?id=1b-qlgEKufiFWnNiiCM4ya5fwWtUOLK4A&export=download");
+    createCard("https://img.youtube.com/vi/OsMSm5Ov4a0/mqdefault.jpg", "NEET 2024 | Last 20 Days Timetable Tips For Aspirants", "https://drive.usercontent.google.com/download?id=1rhvuwd0Ew5nhjB87nQTCZyg9AUvd-LLt&export=download");
+    createCard("https://img.youtube.com/vi/gpLrAnfZdZ4/mqdefault.jpg", "DAY-WISE Plan To COMPLETE Biology 5 TIMES Before NEET 2024", "https://drive.usercontent.google.com/download?id=1V6gPqXuFHBJHF2qK5XlRqEveyZRg_Qjx&export=download");
+    createCard("https://img.youtube.com/vi/pTzoCuZzGpM/mqdefault.jpg", "Last 20 Days Strategy | Score 650+ | NEET 2024 | Seep Pahuja", "https://drive.usercontent.google.com/download?id=11zP3zKcgwkEX03QDLhYNeS2UzVwz7I-K&export=download");
+    createCard("https://img.youtube.com/vi/Fd-3q19oXoo/mqdefault.jpg", "NEET 2024 Last 20 Days Ultimate Strategy.", "https://drive.usercontent.google.com/download?id=1h6ZIGjbbtwtUjF4d25sjc9jY8zwk58_R&export=download");
+    createCard("https://img.youtube.com/vi/nhfblNTpP3U/mqdefault.jpg", "अगर आज ये नहीं करा तो जीवन भर पछताना पड़ेगा | Best IIT-JEE Motivation", "https://drive.usercontent.google.com/download?id=1Sad07W5auVpigAe0u5tZMZD9x9urmNCl&export=download");
+    createCard("https://img.youtube.com/vi/ELobuy7pcQo/mqdefault.jpg", "How to Crack Mathematics in 45 days ? JEE advanced 2024", "https://drive.usercontent.google.com/download?id=1kY65zQ80Z4z9kkA0W924hTH5BraV4ZO2&export=download");
+    createCard("https://img.youtube.com/vi/OKEGrOW4838/mqdefault.jpg", "The Most In-Depth Roadmap for JEE Advanced Physics!", "https://drive.usercontent.google.com/download?id=1TwzZ2rCdt6U69LPBAguGHHmA_24gzjLY&export=download");
+    createCard("https://img.youtube.com/vi/lTx8eoj6UI0/mqdefault.jpg", "RANKERS' Exam Attempting Strategy - JEE Mains 2024", "https://drive.usercontent.google.com/download?id=1Qxf4x0Vn4MV8Ftah_7tkl-PY0PTINLuJ&export=download");
+    createCard("https://img.youtube.com/vi/oHqP6cx07GA/mqdefault.jpg", "5 steps to Advanced Level in 45 days : JEE 2024 strategy | IIT Motivation", "https://drive.usercontent.google.com/download?id=1RGROixsVXN0Czp_vz70635XEifRUArXA&export=download");
+    createCard("https://img.youtube.com/vi/ftpMoqZ7i2I/mqdefault.jpg", "FIGHT With All Your Distraction For IIT JEE Exam", "https://drive.usercontent.google.com/download?id=1f_eWxgNfDq-_TYBYELGegfJR9SGriYnP&export=download");
+    createCard("https://img.youtube.com/vi/BGog1v94t2I/mqdefault.jpg", "Mistakes IIT JEE Aspirants Make & 10 Tips to Avoid Them!", "https://drive.usercontent.google.com/download?id=1dexNY_m7lrjARbaZjKW1rGGGH9iDS5tM&export=download");
+    createCard("https://img.youtube.com/vi/Dn9N-pHIW1Q/mqdefault.jpg", "How to Crack JEE Advanced 2024 in 45 days? Strategy & IIT motivation", "https://drive.usercontent.google.com/download?id=1BJALvDGgJ1UZbl8pqpAEDRwm0WgzXIHP&export=download");
+  </script>
+</body>
+
+</html>
