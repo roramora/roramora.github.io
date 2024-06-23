@@ -253,35 +253,7 @@
       text-decoration: underline;
     }
 
-    .context-menu {
-      display: none;
-      position: fixed;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
-      z-index: 1000;
-    }
-
-    .context-menu ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .context-menu li {
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-
-    .context-menu li:hover {
-      background-color: #f0f0f0;
-    }
-
     @media (max-width: 768px) {
-      .task {
-        touch-action: none;
-      }
-
       .kanban-board {
         flex-direction: column;
       }
@@ -303,10 +275,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-P0K4PEBRM5');
   </script>
@@ -355,16 +324,8 @@
     </div>
   </div>
 
-  <div id="contextMenu" class="context-menu">
-    <ul>
-      <li id="moveLeft">Move Left</li>
-      <li id="moveRight">Move Right</li>
-      <li id="deleteTask">Delete</li>
-    </ul>
-  </div>
-
   <div class="footer">
-    <a href="mailto:main.roramora@gmail.com">email</a>
+    <a href="mailto:example@example.com">email</a>
     <a href="#">about</a>
   </div>
 </body>

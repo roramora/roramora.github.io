@@ -8,13 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let draggedTask = null;
     let tasks = [];
   
-    let longPressTimer;
-    let longPressTask = null;
-    const contextMenu = document.getElementById('contextMenu');
-    const moveLeftOption = document.getElementById('moveLeft');
-    const moveRightOption = document.getElementById('moveRight');
-    const deleteTaskOption = document.getElementById('deleteTask');
-  
     flatpickr("#taskDueDate", {
       dateFormat: "Y-m-d",
       allowInput: true
@@ -126,26 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function addDragListeners(task) {
       task.addEventListener('dragstart', dragStart);
       task.addEventListener('dragend', dragEnd);
-      
-      // Add touch events for mobile
-      let touchStartX, touchStartY;
-      task.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }, { passive: true });
-  
-      task.addEventListener('touchmove', (e) => {
-        if (window.innerWidth <= 700) return;
-        const touchEndX = e.touches[0].clientX;
-        const touchEndY = e.touches[0].clientY;
-        const dx = touchEndX - touchStartX;
-        const dy = touchEndY - touchStartY;
-        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
-          cancelLongPress();
-        }
-      }, { passive: false });
-  
-      task.addEventListener('touchend', dragEnd);
     }
   
     function dragStart(e) {
@@ -194,89 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-  
-    function handleLongPress(e) {
-      if (window.innerWidth > 700) return;
-  
-      longPressTask = e.target.closest('.task');
-      if (!longPressTask) return;
-  
-      e.preventDefault();
-      longPressTimer = setTimeout(() => {
-        showContextMenu(e);
-      }, 500);
-    }
-  
-    function cancelLongPress() {
-      clearTimeout(longPressTimer);
-    }
-  
-    function showContextMenu(e) {
-      const rect = longPressTask.getBoundingClientRect();
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
-  
-      contextMenu.style.display = 'block';
-      
-      // Position the menu
-      if (x + contextMenu.offsetWidth > window.innerWidth) {
-        contextMenu.style.left = (window.innerWidth - contextMenu.offsetWidth) + 'px';
-      } else {
-        contextMenu.style.left = x + 'px';
-      }
-  
-      if (y + contextMenu.offsetHeight > window.innerHeight) {
-        contextMenu.style.top = (window.innerHeight - contextMenu.offsetHeight) + 'px';
-      } else {
-        contextMenu.style.top = y + 'px';
-      }
-  
-      e.preventDefault();
-    }
-  
-    function hideContextMenu() {
-      contextMenu.style.display = 'none';
-    }
-  
-    function moveTask(direction) {
-      const currentColumn = longPressTask.closest('.column');
-      const columns = Array.from(document.querySelectorAll('.column'));
-      const currentIndex = columns.indexOf(currentColumn);
-      let newIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1;
-  
-      if (newIndex >= 0 && newIndex < columns.length) {
-        const newColumn = columns[newIndex];
-        newColumn.querySelector('.task-container').appendChild(longPressTask);
-        updateTaskColumn(longPressTask.dataset.id, newColumn.id);
-      }
-  
-      hideContextMenu();
-    }
-  
-    function updateTaskColumn(taskId, newColumnId) {
-      const taskIndex = tasks.findIndex(t => t.id === taskId);
-      if (taskIndex !== -1) {
-        tasks[taskIndex].column = newColumnId;
-        debouncedSave();
-      }
-    }
-  
-    moveLeftOption.addEventListener('click', () => moveTask('left'));
-    moveRightOption.addEventListener('click', () => moveTask('right'));
-    deleteTaskOption.addEventListener('click', () => {
-      deleteTask(longPressTask);
-      hideContextMenu();
-    });
-  
-    document.addEventListener('touchstart', handleLongPress, { passive: false });
-    document.addEventListener('touchend', cancelLongPress);
-    document.addEventListener('touchmove', cancelLongPress);
-  
-    document.addEventListener('click', (e) => {
-      if (!contextMenu.contains(e.target)) {
-        hideContextMenu();
-      }
-    });
   
     loadFromStorage();
   });
