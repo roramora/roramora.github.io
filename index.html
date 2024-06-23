@@ -22,6 +22,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
     .button-container {
@@ -40,6 +41,7 @@
       max-width: 1200px;
       width: 100%;
       justify-content: center;
+      margin-bottom: auto;
     }
 
     .column {
@@ -236,6 +238,21 @@
       flex-shrink: 0;
     }
 
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #2196F3;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
       .kanban-board {
         flex-direction: column;
@@ -305,6 +322,11 @@
         <button type="submit">Add Task</button>
       </form>
     </div>
+  </div>
+
+  <div class="footer">
+    <a href="mailto:main.roramora@gmail.com">email</a>
+    <a href="#">about</a>
   </div>
 </body>
 
