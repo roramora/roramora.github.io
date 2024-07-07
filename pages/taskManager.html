@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Home</title>
+  <meta name="description" content="India's #1 Career Planning Platform">
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.png" alt="JEENEETards favicon">
+  <link rel="stylesheet" href="../static/taskmanager_style.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-P0K4PEBRM5');
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+  <script src="../static/script.js"></script>
+</head>
+
+<body>
+  <div class="button-container">
+    <button id="addTaskBtn">Add Task</button>
+    <button id="clearTasksBtn">Clear Tasks</button>
+  </div>
+  <div class="kanban-board">
+    <div class="column" id="todo">
+      <h2>To Do</h2>
+      <div class="task-container"></div>
+    </div>
+    <div class="column" id="inProgress">
+      <h2>In Progress</h2>
+      <div class="task-container"></div>
+    </div>
+    <div class="column" id="done">
+      <h2>Done</h2>
+      <div class="task-container"></div>
+    </div>
+  </div>
+
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="taskForm">
+        <input type="text" id="taskTitle" placeholder="Task Title" required>
+        <select id="taskSeverity" required>
+          <option value="">Select Severity</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <div class="date-input-container">
+          <input type="text" id="taskDueDate" placeholder="Select due date" required readonly>
+          <span class="calendar-icon">📅</span>
+        </div>
+        <button type="submit">Add Task</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="mailto:example@example.com">email</a>
+    <a href="#">about</a>
+  </div>
+</body>
+
+</html>
