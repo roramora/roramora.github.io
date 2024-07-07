@@ -26,6 +26,13 @@
   <div class="button-container">
     <button id="addTaskBtn">Add Task</button>
     <button id="clearTasksBtn">Clear Tasks</button>
+    <input type="text" id="searchInput" class="" placeholder="Search tasks...">
+    <select id="filterSeverity">
+      <option value="">Filter by severity</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
   </div>
   <div class="kanban-board">
     <div class="column" id="todo">
@@ -46,6 +53,7 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <form id="taskForm">
+        <input type="hidden" id="taskId">
         <input type="text" id="taskTitle" placeholder="Task Title" required>
         <select id="taskSeverity" required>
           <option value="">Select Severity</option>
@@ -57,14 +65,13 @@
           <input type="text" id="taskDueDate" placeholder="Select due date" required readonly>
           <span class="calendar-icon">📅</span>
         </div>
-        <button type="submit">Add Task</button>
+        <button type="submit">Save Task</button>
       </form>
     </div>
   </div>
 
   <div class="footer">
-    <a href="mailto:example@example.com">email</a>
-    <a href="#">about</a>
+    <p>Task Manager</p>
   </div>
 </body>
 

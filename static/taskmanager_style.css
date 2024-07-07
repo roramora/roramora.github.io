@@ -7,7 +7,7 @@
   body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #191a1a;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@
   .column {
     flex: 1 1 300px;
     max-width: 350px;
-    background-color: #e0e0e0;
+    background-color: #808080;
     border-radius: 10px;
     padding: 15px;
     min-height: 300px;
@@ -49,7 +49,7 @@
   .column h2 {
     text-align: center;
     margin-bottom: 15px;
-    color: #333;
+    color: #fff;
   }
 
   .task-container {
@@ -117,6 +117,7 @@
   .column.drag-over {
     background-color: #bdbdbd;
   }
+
 
   #addTaskBtn,
   #clearTasksBtn {
@@ -233,6 +234,10 @@
     text-align: center;
   }
 
+  .footer p {
+    color: #666;
+  }
+
   .footer a {
     color: #2196F3;
     text-decoration: none;
@@ -260,3 +265,31 @@
       overflow-y: visible;
     }
   }
+
+  body.dark-mode {
+    background-color: #191a1a;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .modal-content {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .task {
+    background-color: #444444;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .task .severity.low {
+    background-color: #6c757d;
+  }
+  
+  body.dark-mode .task .severity.medium {
+    background-color: #ffc107;
+  }
+  
+  body.dark-mode .task .severity.high {
+    background-color: #dc3545;
+  }
+  
