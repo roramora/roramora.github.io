@@ -293,3 +293,13 @@
     background-color: #dc3545;
   }
   
+  a.button {
+    padding: 10px 20px;
+    background-color: #f39f21;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
