@@ -23,6 +23,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      padding-top: 40px;
     }
 
     .button-container {
@@ -270,6 +271,35 @@
         overflow-y: visible;
       }
     }
+
+    .deprecation-banner {
+      background-color: #ff0000;
+      color: white;
+      padding: 8px 0;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .scrolling-text {
+      display: inline-block;
+      animation: scroll-left 20s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0K4PEBRM5"></script>
@@ -285,6 +315,11 @@
 </head>
 
 <body>
+  <div class="deprecation-banner">
+    <div class="scrolling-text">
+      Notice: This page will be deprecated on April 13, 2025. Please save any important information before the shutdown date.
+    </div>
+  </div>
   <div class="button-container">
     <button id="addTaskBtn">Add Task</button>
     <button id="clearTasksBtn">Clear Tasks</button>

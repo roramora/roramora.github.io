@@ -29,6 +29,34 @@
       background-color: #191a1a;
     }
 
+    .deprecation-banner {
+      background-color: #ff0000;
+      color: white;
+      padding: 8px 0;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .scrolling-text {
+      display: inline-block;
+      animation: scroll-left 20s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Adjust body padding to account for banner */
+    body {
+      padding-top: 40px;
+    }
 
     #header {
       display: flex;
@@ -74,6 +102,11 @@
 </head>
 
 <body>
+  <div class="deprecation-banner">
+    <div class="scrolling-text">
+        Notice: This page will be deprecated on April 13, 2025. Please save any important information before the shutdown date.
+    </div>
+  </div>
   <header>
     <div id="header">
       <a href="https://www.jeeneetards.com">
